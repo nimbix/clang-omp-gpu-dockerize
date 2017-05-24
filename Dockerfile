@@ -50,3 +50,6 @@ RUN apt-get -y update && \
 
 # Expose port 22 for local JARVICE emulation in docker
 EXPOSE 22
+
+# Fix may be needed
+RUN ln -s libcuda.so.1 /usr/lib/powerpc64le-linux-gnu/libcuda.so
