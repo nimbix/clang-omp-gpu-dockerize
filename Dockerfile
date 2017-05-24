@@ -1,16 +1,6 @@
 FROM nvidia/cuda-ppc64le:8.0-cudnn6-devel-ubuntu16.04
 MAINTAINER Arpith Jacob <arpith@gmail.com>
 
-RUN apt-get -y update && \
-    apt-get -y install curl iputils-ping unzip && \
-    apt-get clean && \
-    curl -H 'Cache-Control: no-cache' \
-        https://raw.githubusercontent.com/nimbix/image-common/master/install-nimbix.sh \
-        | bash
-
-# Expose port 22 for local JARVICE emulation in docker
-EXPOSE 22
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
             ca-certificates \
             libelf1 libelf-dev \
@@ -50,3 +40,13 @@ ENV LIBRARY_PATH=/opt/ibm/clang-ykt/lib:/usr/local/cuda-8.0/lib64:/usr/lib/nvidi
 ENV PATH=/opt/ibm/clang-ykt/bin:/usr/local/cuda/bin:$PATH
 
 # Compiler is built in /opt/ibm/clang-ykt/bin/
+
+RUN apt-get -y update && \
+    apt-get -y install curl iputils-ping unzip && \
+    apt-get clean && \
+    curl -H 'Cache-Control: no-cache' \
+        https://raw.githubusercontent.com/nimbix/image-common/master/install-nimbix.sh \
+        | bash
+
+# Expose port 22 for local JARVICE emulation in docker
+EXPOSE 22
